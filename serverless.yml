@@ -1,0 +1,43 @@
+service: aws-node-rest-api-project
+
+frameworkVersion: "2"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: "20201221"
+  region: eu-central-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:eu-central-1:144727704192:table/User
+
+functions:
+  createUser:
+    handler: src/createUser.handler
+    events:
+      - http:
+          path: /user
+          method: post
+  getUserById:
+    handler: src/getUserById.handler
+    events:
+      - http:
+          path: /user/{id}
+          method: get
+
+resources:
+  Resources:
+    User:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: User
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

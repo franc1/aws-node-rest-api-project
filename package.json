@@ -1,0 +1,15 @@
+{
+  "name": "aws-node-rest-api-project",
+  "version": "1.0.0",
+  "description": "This template demonstrates how to make a simple REST API with Node.js running on AWS Lambda, API Gateway and DynamoDB using the traditional Serverless Framework. API contains 2 endpoints: createUser and getUserById.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Fran Camaj",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.983.0",
+    "uuid": "^8.3.2"
+  }
+}
